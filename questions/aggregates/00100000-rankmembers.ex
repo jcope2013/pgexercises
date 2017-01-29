@@ -20,9 +20,9 @@ order by rank, surname, firstname;
 <p>Talking of clarity, this rounding malarky is starting to introduce a noticeable amount of code repetition.  At this point it's a judgement call, but you may wish to factor it out using a subquery as below:</p>
 
 <sql>
-select firstname, surname, hours, rank() over (order by hours) from
+select firstname, surname, hours, rank() over (order by hours desc) rank from
 	(select firstname, surname,
-		((sum(bks.slots)+5)/20)*10 as hours
+		((sum(bks.slots)+10)/20)*10 as hours
 
 		from cd.bookings bks
 		inner join cd.members mems
